@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2e5c8a">
+<title>Обзаведение питомцем — найди друга в стиле Sims</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#4a90d9;--deep:#2e5c8a;--sky:#bcecff;--ice:#effbff;--ink:#183d60;--white:#fff;--pink:#ffb8dc;--shadow:0 14px 35px #153e6330}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:radial-gradient(ellipse at 15% 8%,#d9f6ff 0,transparent 35%),linear-gradient(145deg,#eaf9ff,#c8e8ff 55%,#eaf6ff);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,a{ -webkit-tap-highlight-color:transparent}
+.site-header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#397fc3f5,#2e5c8af2);border-bottom:2px solid #a9e6ff;box-shadow:0 5px 18px #1b477744;backdrop-filter:blur(12px)}
+.nav{max-width:1180px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:white}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:1.05rem;line-height:1.1}
+.plumbob{width:26px;height:38px;flex:none;background:linear-gradient(135deg,#e4ffb4,#70e99b 45%,#22a66e);clip-path:polygon(50% 0,100% 48%,50% 100%,0 48%);filter:drop-shadow(0 0 6px #9affbe);position:relative}
+.nav-links{display:flex;gap:22px;align-items:center;font-weight:800;font-size:.92rem}
+.nav-links a{opacity:.9;transition:opacity .2s,color .2s}.nav-links a:hover{opacity:1;color:#c8f3ff}
+.menu-toggle{display:none;border:1px solid #ffffff80;border-radius:12px;background:#ffffff18;color:#fff;padding:8px 12px;font:inherit;font-weight:800}
+.hero{max-width:1180px;margin:0 auto;padding:76px 22px 62px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:44px;min-height:530px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#ffffffb8;border:1px solid #fff;border-radius:99px;padding:8px 14px;font-weight:900;color:#3979b5;box-shadow:0 5px 16px #5c9dd522}
+h1,h2,h3,p{margin-top:0}h1{font-family:'Quicksand',sans-serif;font-size:clamp(2.6rem,5.4vw,4.8rem);line-height:1.02;letter-spacing:-2px;margin:20px 0;color:#214f7d}
+h1 span{color:#4a90d9;text-shadow:2px 3px 0 #fff}
+.hero p{font-size:1.15rem;line-height:1.75;max-width:560px;color:#41678a}
+.actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:26px}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;border:0;border-radius:15px;padding:13px 21px;font:800 1rem 'Nunito',sans-serif;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 5px 0 #214f7d30,0 10px 20px #2865a02b;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 0 #214f7d22,0 15px 25px #2865a033}
+.btn-primary{background:linear-gradient(180deg,#83d6ff,#4293df 60%,#3679bf);color:white;border:1px solid #d7f5ff}
+.btn-secondary{background:linear-gradient(180deg,#fff,#e8f8ff);color:#3474ad;border:1px solid #acdfff}
+.hero-art{position:relative;min-height:360px;display:grid;place-items:center}
+.portal{width:min(100%,410px);aspect-ratio:1;border-radius:48% 52% 43% 57% / 49% 43% 57% 51%;background:linear-gradient(145deg,#80caff,#3b7fc5 65%,#285b91);border:8px solid #e9faff;box-shadow:inset 0 0 0 3px #8edfff,0 25px 55px #2a60934d;display:grid;place-items:center;transform:rotate(-4deg);position:relative}
+.portal:before{content:"";position:absolute;inset:19px;border:2px dashed #d7f8ff9c;border-radius:inherit}
+.pet-emoji{font-size:clamp(7rem,16vw,11rem);filter:drop-shadow(0 12px 5px #153f6340);transform:rotate(4deg);z-index:1}
+.floating{position:absolute;background:#fff;border:2px solid #b9eaff;border-radius:16px;padding:12px 16px;box-shadow:var(--shadow);font-weight:900;animation:bob 4s ease-in-out infinite}
+.float-one{top:24px;left:0;transform:rotate(-6deg)}.float-two{bottom:22px;right:-2px;transform:rotate(5deg);animation-delay:-2s}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -9px}}
+.section{padding:78px 22px}.section-inner{max-width:1180px;margin:auto}
+.section-heading{text-align:center;margin-bottom:35px}.kicker{color:#4389c8;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;font-weight:900;margin-bottom:9px}
+h2{font:800 clamp(2rem,4vw,3rem)/1.1 'Quicksand',sans-serif;color:#214f7d;margin-bottom:12px}
+.section-heading p{max-width:650px;margin:0 auto;color:#547594;line-height:1.7}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.panel{background:linear-gradient(145deg,#fff,#e6f8ff);border:2px solid #fff;border-radius:24px;box-shadow:var(--shadow);padding:28px;position:relative;overflow:hidden}
+.panel:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid #8bcdfb;border-radius:22px}
+.panel-icon{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;font-size:1.8rem;background:linear-gradient(145deg,#bdeeff,#75baff);margin-bottom:16px}
+.panel h3{font:800 1.35rem 'Quicksand',sans-serif;margin-bottom:9px}.panel p{line-height:1.75;color:#547594;margin-bottom:0}
+.pets-section{background:linear-gradient(180deg,#d4f0ff80,#b9e1ff90);border-block:1px solid #fff}
+.pet-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.pet-card{background:linear-gradient(180deg,#c4eeff,#77b5ee 48%,#eafaff 49%,#fff);border:3px solid #f6fdff;border-radius:21px;box-shadow:0 8px 0 #2865a01c,0 13px 26px #25578220;padding:12px;position:relative;transition:transform .25s,box-shadow .25s;isolation:isolate}
+.pet-card:hover{transform:translateY(-7px) scale(1.015);box-shadow:0 15px 0 #2865a012,0 24px 36px #25578235;z-index:2}
+.pet-picture{height:185px;display:grid;place-items:center;background:linear-gradient(145deg,#83b9f0,#b4e8ff);border:3px solid #e9fbff;border-radius:14px;box-shadow:inset 0 0 0 2px #6b9fd0;position:relative;overflow:hidden}
+.pet-picture:before{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:#ffffff25;top:-70px;right:-40px}
+.pet-picture span{font-size:6.7rem;filter:drop-shadow(0 9px 4px #28547a35);transition:transform .25s}.pet-card:hover .pet-picture span{transform:scale(1.08) rotate(-4deg)}
+.pet-name{text-align:center;font-weight:900;font-size:1.18rem;margin:13px 0 4px}
+.pet-meta{text-align:center;color:#547594;font-size:.9rem;margin-bottom:10px}
+.cost{display:flex;justify-content:space-between;align-items:center;background:#eaf8ff;border:1px solid #c7eaff;border-radius:10px;padding:8px 10px;font-weight:900;font-size:.9rem}
+.traits-title{font-size:.76rem;text-transform:uppercase;letter-spacing:1px;color:#4c7ca3;font-weight:900;margin:14px 0 7px}
+.traits{display:flex;flex-wrap:wrap;gap:6px;min-height:58px}
+.trait{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid #c4e8fb;border-radius:9px;padding:5px 8px;font-size:.77rem;font-weight:800;color:#3f6e93}
+.adopt-btn{width:100%;margin-top:13px}
+.tooltip{position:absolute;left:12px;right:12px;top:85px;z-index:5;background:linear-gradient(145deg,#438bd1,#2e5c8a);border:2px solid #bceaff;border-radius:14px;color:white;padding:14px;box-shadow:0 12px 28px #183c5d70;opacity:0;transform:translateY(8px);pointer-events:none;transition:.22s}
+.pet-card:hover .tooltip,.pet-card:focus-within .tooltip{opacity:1;transform:translateY(0)}
+.tooltip strong{display:block;margin-bottom:5px}.tooltip p{font-size:.86rem;line-height:1.5;margin:0;color:#edfaff}
+.note{text-align:center;font-size:.83rem;color:#6887a1;margin-top:22px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:17px;counter-reset:step}
+.step{padding:24px 20px;background:#ffffffc9;border:2px solid #fff;border-radius:20px;box-shadow:var(--shadow);position:relative}
+.step-number{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#8ddaff,#4a90d9);color:#fff;font-size:1.2rem;font-weight:900;box-shadow:0 4px 0 #285f9430;margin-bottom:17px}
+.step h3{font:800 1.1rem 'Quicksand',sans-serif;margin-bottom:8px}.step p{font-size:.93rem;line-height:1.65;color:#547594;margin-bottom:0}
+.reviews{background:linear-gradient(145deg,#3679b6,#2e5c8a);color:#fff}
+.reviews .kicker{color:#bcecff}.reviews h2{color:white}.reviews .section-heading p{color:#d5efff}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review{background:linear-gradient(145deg,#ffffff,#e6f8ff);color:#2e5c8a;border:2px solid #c6edff;border-radius:21px;padding:24px;box-shadow:0 12px 24px #173d5d38}
+.stars{color:#f2b94b;letter-spacing:3px;margin-bottom:13px}.review blockquote{margin:0 0 17px;line-height:1.75;color:#4e6f8c}.reviewer{display:flex;align-items:center;gap:11px;font-weight:900}.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#c3ecff;font-size:1.4rem}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}
+.contact-list{display:grid;gap:13px;margin-top:20px}.contact-row{display:flex;align-items:flex-start;gap:12px;line-height:1.6;color:#41698b}.contact-row b{display:block;color:#214f7d}
+.map-card{min-height:280px;border-radius:24px;border:3px solid #fff;box-shadow:var(--shadow);background:radial-gradient(circle at 30% 30%,#d8f5ff 0 7%,transparent 8%),radial-gradient(circle at 70% 60%,#c6eaff 0 10%,transparent 11%),linear-gradient(145deg,#7fb9e7,#b9e9ff);display:grid;place-items:center;text-align:center;padding:24px;position:relative;overflow:hidden}
+.map-card:before{content:"";position:absolute;width:140%;height:60px;background:#ffffff50;transform:rotate(-28deg)}.map-inner{z-index:1;background:#ffffffdf;border:2px solid #fff;border-radius:18px;padding:22px;max-width:300px;box-shadow:var(--shadow)}.map-inner span{font-size:2.5rem}.map-inner h3{margin:7px 0;font-family:'Quicksand',sans-serif}.map-inner p{margin:0;color:#547594;line-height:1.5}
+footer{background:#214d77;color:#d7efff;padding:25px 22px;text-align:center;font-size:.9rem}footer strong{color:#fff}
+@media(max-width:850px){.nav-links{gap:12px;font-size:.82rem}.hero{gap:20px;padding-top:54px}.pet-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.nav{padding:11px 16px;flex-wrap:wrap}.brand{font-size:.95rem}.menu-toggle{display:block}.nav-links{display:none;flex-basis:100%;flex-direction:column;align-items:stretch;gap:0;padding:4px 0 8px}.nav-links.open{display:flex}.nav-links a{padding:11px 8px;border-top:1px solid #ffffff25;font-size:.95rem}.hero{grid-template-columns:1fr;text-align:center;padding:48px 20px 42px;gap:10px;min-height:auto}.hero p{margin-inline:auto}.actions{justify-content:center}.hero-art{min-height:290px;margin-top:10px}.portal{width:min(80vw,310px)}.floating{font-size:.85rem;padding:9px 12px}.float-one{left:0}.float-two{right:0}.section{padding:58px 16px}.about-grid,.contact-grid{grid-template-columns:1fr}.pet-grid{grid-template-columns:1fr}.pet-picture{height:200px}.pet-picture span{font-size:7rem}.steps,.review-grid{grid-template-columns:1fr}.panel{padding:23px}.tooltip{top:82px}.section-heading{margin-bottom:27px}h1{letter-spacing:-1.3px}.contact-grid{gap:17px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Extra glossy Sims-inspired polish */
+body{background:radial-gradient(ellipse at 50% 0%,#d9f8ff 0,#9fd8ff 35%,#62a9e8 100%);background-attachment:fixed}
+.site-header{background:linear-gradient(180deg,#2878c2f7,#174f8df5);border-bottom:3px solid #8edcff;box-shadow:0 7px 24px #17487950}
+.brand{font-size:1.08rem;text-shadow:0 1px 2px #164775}
+.hero{max-width:1240px;min-height:440px;padding-top:54px;padding-bottom:48px}
+.hero:before{content:"";position:absolute;inset:90px 0 auto;height:370px;pointer-events:none;background:linear-gradient(90deg,#d9f5ff88,transparent 65%);z-index:-1}
+h1{color:#154b80;text-shadow:0 2px 0 #fff8}
+h1 span{color:#267fd0;text-shadow:2px 3px 0 #e8f9ff}
+.portal{background:linear-gradient(145deg,#82d4ff,#3785d2 62%,#1e5798);box-shadow:inset 0 0 0 3px #b5edff,0 25px 55px #174a7b55}
+.section{padding-top:62px;padding-bottom:62px}
+.section-heading h2{text-shadow:0 1px 0 #fff8}
+.panel,.step,.review,.pet-card,.map-card{box-shadow:0 7px 0 #1f5d9620,0 14px 28px #164d7c28}
+.panel{background:linear-gradient(145deg,#effcff,#bfe8ff);border-color:#e9faff}
+.pets-section{background:linear-gradient(180deg,#8bcfffcc,#55a5e8e8);border-block:2px solid #d6f6ff}
+.pets-section .section-heading h2{color:#164c80}
+.pet-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.pet-card{background:linear-gradient(180deg,#c3edff 0%,#70b6ef 43%,#e5f8ff 44%,#fff 100%);border:2px solid #f5fdff;border-radius:17px;padding:10px}
+.pet-card:hover{transform:translateY(-6px);box-shadow:0 9px 0 #1f5d9615,0 22px 34px #164d7c3a}
+.pet-picture{height:135px;border-radius:11px}
+.pet-picture span{font-size:5.1rem}
+.pet-name{color:#174d80;font-size:1.08rem}
+.cost{background:#e6f8ff;border-color:#b9e5ff;color:#285f8e}
+.trait{background:#f8fdff;border-color:#b4dff8;color:#315f86}
+.btn-primary{background:linear-gradient(180deg,#5dbdff 0%,#197de0 53%,#1265c4 100%);border:1px solid #d9f5ff;box-shadow:inset 0 2px 0 #ffffff7a,0 4px 0 #124f91,0 7px 14px #175b9e35}
+.btn-primary:after{content:"";position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(100deg,transparent,#ffffff65,transparent);transform:skewX(-22deg);transition:left .5s}
+.btn-primary:hover:after{left:140%}
+.btn-secondary{box-shadow:inset 0 2px 0 #fff,0 4px 0 #7bb4d9}
+.tooltip{background:linear-gradient(145deg,#3285d0,#164e89);border-color:#c7f0ff}
+.pair-card{background:linear-gradient(180deg,#f5d8f0,#e4aee0 43%,#fff0fb 44%,#fff 100%);border-color:#ffdff7}
+.pair-card .pet-name{color:#8b4d90}
+.pair-picture{height:135px;border:3px solid #fff0ff;border-radius:11px;background:linear-gradient(135deg,#9dcfff,#f5c7e9);display:grid;place-items:center;overflow:hidden;box-shadow:inset 0 0 0 2px #cba4db}
+.pair-placeholder{text-align:center;color:#6d548c;padding:8px;display:flex;flex-direction:column;align-items:center;gap:5px}
+.pair-placeholder span{font-size:2rem;white-space:nowrap}
+.pair-placeholder strong{font-size:.78rem;line-height:1.2}
+.pair-placeholder small{font-size:.65rem;line-height:1.2}
+.pair-details{display:grid;gap:5px;margin:10px 0;color:#6d548c;font-size:.8rem}
+.pair-card .trait{border-color:#ecc7e8;color:#80578c}
+.pair-card .adopt-btn{font-size:.88rem;padding-inline:8px}
+@media(max-width:1000px){.pet-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:850px){.pet-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.pet-grid{grid-template-columns:1fr}.pet-picture,.pair-picture{height:180px}.pet-picture span{font-size:6rem}.pair-placeholder span{font-size:2.7rem}.pair-placeholder strong{font-size:.9rem}.pair-placeholder small{font-size:.75rem}}
+
+</style>
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav" aria-label="Основная навигация">
+    <a class="brand" href="#top"><span class="plumbob" aria-hidden="true"></span><span>Обзаведение<br>питомцем</span></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">☰ Меню</button>
+    <div class="nav-links" id="nav-links">
+      <a href="#about">О приюте</a><a href="#pets">Питомцы</a><a href="#how">Как приютить</a><a href="#contacts">Контакты</a>
+    </div>
+  </nav>
+</header>
+<main id="top">
+<section class="hero">
+  <div>
+    <span class="eyebrow">✦ Твой новый сюжет начинается здесь</span>
+    <h1>Найди друга<br><span>в стиле Sims</span></h1>
+    <p>У каждого питомца есть свой характер, маленькие привычки и целая история. Возможно, именно тебя он ждёт, чтобы начать новую главу.</p>
+    <div class="actions"><a class="btn btn-primary" href="#pets">♡ Смотреть питомцев</a><a class="btn btn-secondary" href="#how">Как всё устроено ↗</a></div>
+  </div>
+  <div class="hero-art" aria-label="Иллюстрация котика">
+    <div class="portal"><div class="pet-emoji">🐈</div></div>
+    <div class="floating float-one">✦ Дружба: 100%</div><div class="floating float-two">♡ Дом ищет героя</div>
+  </div>
+</section>
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-heading"><div class="kicker">Немного о нас</div><h2>Не просто приют — начало дружбы</h2><p>Котики, собаки и даже маленький жеребёнок — у каждого свой характер, своя история и шанс найти дом.</p></div>
+    <div class="about-grid">
+      <article class="panel"><div class="panel-icon">🏡</div><h3>Наша история</h3><p>«Обзаведение питомцем» — уютный приют в игровом стиле, где у каждого хвостика есть характер, история и шанс на новый дом. Выбирай своего будущего друга, знакомься с его привычками и начинай новую главу вместе.</p></article>
+      <article class="panel"><div class="panel-icon">💙</div><h3>Наша миссия</h3><p>Помочь людям подойти к ответственному усыновлению с теплом и вниманием. Важно не выбрать «идеального» питомца, а найти того, чьи потребности, характер и образ жизни подойдут вашей семье.</p></article>
+    </div>
+  </div>
+</section>
+<section class="section pets-section" id="pets">
+ <div class="section-inner">
+  <div class="section-heading"><div class="kicker">Выбери персонажа</div><h2>Наши хвостатые симы</h2><p>Наведи курсор на карточку или открой её с клавиатуры, чтобы увидеть подсказку — прямо как в игре!</p></div>
+  <div class="pet-grid">
+   <article class="pet-card" tabindex="0" aria-label="Гугуля, котёнок">
+    <div class="pet-picture"><span>🐱</span></div><div class="pet-name">Гугуля</div><div class="pet-meta">Котёнок · полосатый окрас</div><div class="cost"><span>Стоимость</span><span>Бесплатно ♡</span></div><div class="traits-title">Черты характера</div><div class="traits"><span class="trait">🚀 Торпеда</span><span class="trait">🧭 Любит приключения</span><span class="trait">💗 Лапочка</span></div>
+    <div class="tooltip"><strong>🐾 Гугуля</strong><p>Любопытный исследователь: первым проверит каждый пакет и непременно составит тебе компанию.</p></div><a class="btn btn-primary adopt-btn" href="#contacts" aria-label="Узнать об усыновлении Гугули">♡ Приютить</a>
+   </article>
+   <article class="pet-card" tabindex="0" aria-label="Бе-бе, котёнок">
+    <div class="pet-picture"><span>🐈</span></div><div class="pet-name">Бе-бе</div><div class="pet-meta">Помесь · рыжий окрас</div><div class="cost"><span>Стоимость</span><span>Бесплатно ♡</span></div><div class="traits-title">Черты характера</div><div class="traits"><span class="trait">😴 Соня</span><span class="trait">🧶 Игривый</span><span class="trait">💗 Лапочка</span></div>
+    <div class="tooltip"><strong>🐾 Бе-бе</strong><p>Нежный мурлыка, который ценит мягкие пледы, спокойные вечера и внимание человека.</p></div><a class="btn btn-primary adopt-btn" href="#contacts" aria-label="Узнать об усыновлении Бе-бе">♡ Приютить</a>
+   </article>
+   <article class="pet-card" tabindex="0" aria-label="Блэз, кот">
+    <div class="pet-picture"><span>🐈‍⬛</span></div><div class="pet-name">Блэз</div><div class="pet-meta">Помесь · серый кот</div><div class="cost"><span>Стоимость</span><span>Бесплатно ♡</span></div><div class="traits-title">Черты характера</div><div class="traits"><span class="trait">🕵️ Любопытный</span><span class="trait">🎾 Игрок</span><span class="trait">🧠 Умница</span></div>
+    <div class="tooltip"><strong>🐾 Блэз</strong><p>Наблюдатель с независимым нравом. Сначала присмотрится, а потом станет твоим напарником.</p></div><a class="btn btn-primary adopt-btn" href="#contacts" aria-label="Узнать об усыновлении Блэза">♡ Приютить</a>
+   </article>
+   <article class="pet-card" tabindex="0" aria-label="Хунка Мунка, кошка">
+    <div class="pet-picture"><span>🐈‍⬛</span></div><div class="pet-name">Хунка Мунка</div><div class="pet-meta">Помесь · чёрно-белая кошка</div><div class="cost"><span>Стоимость</span><span>Бесплатно ♡</span></div><div class="traits-title">Черты характера</div><div class="traits"><span class="trait">⚡ Энергичная</span><span class="trait">🧭 Авантюристка</span><span class="trait">💗 Лапочка</span></div>
+    <div class="tooltip"><strong>🐾 Хунка Мунка</strong><p>Маленькая комета: обожает игры, новые коробки и быть в центре событий.</p></div><a class="btn btn-primary adopt-btn" href="#contacts" aria-label="Узнать об усыновлении Хунки Мунки">♡ Приютить</a>
+   </article>
+   <article class="pet-card" tabindex="0" aria-label="Нова, кошка">
+    <div class="pet-picture"><span>🐈‍⬛</span></div><div class="pet-name">Нова</div><div class="pet-meta">Помесь · чёрная кошка</div><div class="cost"><span>Стоимость</span><span>Бесплатно ♡</span></div><div class="traits-title">Черты характера</div><div class="traits"><span class="trait">🌙 Спокойная</span><span class="trait">👀 Наблюдатель</span><span class="trait">💗 Нежная</span></div>
+    <div class="tooltip"><strong>🐾 Нова</strong><p>Тихая и загадочная, любит сидеть рядом и поддерживать тебя одним присутствием.</p></div><a class="btn btn-primary adopt-btn" href="#contacts" aria-label="Узнать об усыновлении Новы">♡ Приютить</a>
+   </article>
+   <article class="pet-card" tabindex="0" aria-label="Тулуз, кот">
+    <div class="pet-picture"><span>🐈</span></div><div class="pet-name">Тулуз</div><div class="pet-meta">Помесь · котёнок</div><div class="cost"><span>Стоимость</span><span>Бесплатно ♡</span></div><div class="traits-title">Черты характера</div><div class="traits"><span class="trait">🚀 Торпеда</span><span class="trait">🧭 Любит приключения</span><span class="trait">💗 Лапочка</span></div>
+    <div class="tooltip"><strong>🐾 Тулуз</strong><p>Малыш с большим запасом энергии. Ему подойдут игры, терпение и уютный уголок.</p></div><a class="btn btn-primary adopt-btn" href="#contacts" aria-label="Узнать об усыновлении Тулуза">♡ Приютить</a>
+   </article>
+
+   <article class="pet-card" tabindex="0" aria-label="Жеребёнок, молодая лошадь">
+    <div class="pet-picture"><span>🐴</span></div><div class="pet-name">Жеребёнок</div><div class="pet-meta">Арабская помесь · малыш</div><div class="cost"><span>Стоимость</span><span>Бесплатно ♡</span></div><div class="traits-title">Черты характера</div><div class="traits"><span class="trait">⚡ Активный</span><span class="trait">🌿 Любит природу</span><span class="trait">💗 Лапочка</span></div>
+    <div class="tooltip"><strong>🐴 Жеребёнок</strong><p>Любознательный малыш, которому понадобятся простор, ежедневный уход и опытный заботливый хозяин.</p></div><a class="btn btn-primary adopt-btn" href="#contacts" aria-label="Узнать об усыновлении жеребёнка">♡ Приютить</a>
+   </article>
+   <article class="pet-card pair-card" tabindex="0" aria-label="Тимон и Патрик, приютить только вместе">
+    <div class="pair-picture" role="img" aria-label="Место для смешной фотографии кота Тимона и мопса Патрика в шляпах">
+      <div class="pair-placeholder"><span>🎩 🐱 🐶 🎩</span><strong>Тут будет ваше фото<br>Тимона и Патрика в шляпах</strong><small>Замени этот блок своей смешной фотографией</small></div>
+    </div>
+    <div class="pet-name">Тимон и Патрик</div><div class="pet-meta">Дуэт, который не разлучают ♡</div>
+    <div class="pair-details"><span>🐱 <b>Тимон</b> — пожилой кот</span><span>🐶 <b>Патрик</b> — взрослый мопс</span></div>
+    <div class="cost"><span>Стоимость</span><span>Бесплатно ♡</span></div><div class="traits-title">Общие черты</div><div class="traits"><span class="trait">🤝 Верные друзья</span><span class="trait">😎 Любят компанию</span><span class="trait">💗 Лапочки</span></div>
+    <div class="tooltip"><strong>💙 Только вместе!</strong><p>Тимон и Патрик — неразлучная парочка. Они ищут один общий дом, где смогут и дальше быть лучшими друзьями.</p></div>
+    <a class="btn btn-primary adopt-btn" href="#contacts" aria-label="Приютить Тимона и Патрика только вместе">♡ Приютить только вместе</a>
+   </article>
+  </div>
+  <p class="note">* Имена и персонажи представлены как демонстрационный макет. Реальные питомцы, адрес и контакты добавляются организаторами приюта.</p>
+ </div>
+</section>
+<section class="section" id="how">
+ <div class="section-inner">
+  <div class="section-heading"><div class="kicker">Новая глава начинается</div><h2>Как приютить питомца</h2><p>Четыре простых шага — и вы на пути к знакомству с будущим другом.</p></div>
+  <div class="steps">
+   <article class="step"><div class="step-number">01</div><h3>Выбери друга</h3><p>Посмотри карточки, узнай о характере и подумай, подходит ли питомец твоему ритму жизни.</p></article>
+   <article class="step"><div class="step-number">02</div><h3>Свяжись с нами</h3><p>Напиши или позвони, чтобы уточнить актуальную информацию и договориться о знакомстве.</p></article>
+   <article class="step"><div class="step-number">03</div><h3>Познакомьтесь</h3><p>Проведи время с питомцем и задай вопросы об уходе, привычках и здоровье.</p></article>
+   <article class="step"><div class="step-number">04</div><h3>Подготовь дом</h3><p>Обсуди условия ответственного усыновления, подготовь необходимые вещи и начинайте вашу историю.</p></article>
+  </div>
+ </div>
+</section>
+<section class="section reviews" id="reviews">
+ <div class="section-inner">
+  <div class="section-heading"><div class="kicker">Истории новых семей</div><h2>Любовь с первого «мяу»</h2><p>Примеры отзывов для макета сайта — замените их реальными отзывами с разрешения авторов.</p></div>
+  <div class="review-grid">
+   <article class="review"><div class="stars" aria-label="5 из 5 звёзд">★★★★★</div><blockquote>«Очень милый и понятный подход! Благодаря карточке я сразу задумалась, сколько внимания и игр нужно будущему питомцу».</blockquote><div class="reviewer"><span class="avatar">👩🏻</span><span>Алина<br><small>будущая кошачья мама</small></span></div></article>
+   <article class="review"><div class="stars" aria-label="5 из 5 звёзд">★★★★★</div><blockquote>«Выглядит как меню персонажа в любимой игре, только решение настоящее и ответственное. Классная идея!»</blockquote><div class="reviewer"><span class="avatar">🧑🏼</span><span>Максим<br><small>любитель игр и животных</small></span></div></article>
+   <article class="review"><div class="stars" aria-label="5 из 5 звёзд">★★★★★</div><blockquote>«Понравилось, что здесь говорят не только о милоте, но и о привычках, характере и подготовке дома».</blockquote><div class="reviewer"><span class="avatar">👩🏽</span><span>Саша<br><small>ответственный хозяин</small></span></div></article>
+  </div>
+ </div>
+</section>
+<section class="section" id="contacts">
+ <div class="section-inner">
+  <div class="section-heading"><div class="kicker">Мы на связи</div><h2>Давай знакомиться!</h2><p>Напиши нам, чтобы узнать больше о питомцах и договориться о знакомстве.</p></div>
+  <div class="contact-grid">
+   <div class="panel"><div class="panel-icon">📬</div><h3>Контакты приюта</h3><p>Пока это демонстрационный сайт — укажи реальные данные перед публикацией.</p>
+    <div class="contact-list">
+     <div class="contact-row"><span>📍</span><div><b>Адрес</b>Улица Добрых Сердец, 3 (пример)</div></div>
+     <div class="contact-row"><span>☎️</span><div><b>Телефон</b>+7 (900) 000-00-00 (пример)</div></div>
+     <div class="contact-row"><span>✉️</span><div><b>Почта</b>hello@example.ru (пример)</div></div>
+     <div class="contact-row"><span>🕒</span><div><b>Часы работы</b>Ежедневно, 10:00–19:00 (пример)</div></div>
+    </div>
+   </div>
+   <div class="map-card"><div class="map-inner"><span>📍</span><h3>Тут начинается дружба</h3><p>Добавь сюда карту или фотографию реального приюта, когда будут известны адрес и место.</p></div></div>
+  </div>
+ </div>
+</section>
+</main>
+<footer>✦ <strong>Обзаведение питомцем</strong> · Найди друга в стиле Sims<br><span>© 2026 · Учебный концепт сайта. The Sims — товарный знак правообладателя; проект не связан с EA.</span></footer>
+<script>
+const toggle=document.querySelector('.menu-toggle');
+const links=document.querySelector('.nav-links');
+toggle.addEventListener('click',()=>{const open=links.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'✕ Закрыть':'☰ Меню';});
+links.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{links.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰ Меню';}));
+</script>
+</body>
+</html>

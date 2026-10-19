@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обзаведение питомцем | Приют в стиле Sims 3</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Приют «Обзаведение питомцем» в Сансет Вэлли — бесплатно отдаём кошек, котят, жеребят и пару «кот + мопс» в добрые руки. Все питомцы привиты, стерилизованы и имеют ветпаспорт.">
+    <meta name="keywords" content="приют для животных, котёнок, кошка, жеребёнок, мопс, усыновление питомца, Сансет Вэлли, бесплатно">
+    <meta name="author" content="Приют «Обзаведение питомцем»">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1E3F66">
+    <link rel="canonical" href="https://example.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Обзаведение питомцем">
+    <meta property="og:title" content="Обзаведение питомцем | Приют в стиле Sims 3">
+    <meta property="og:description" content="Подари дом тому, кто ждёт тебя. Кошки, котята, жеребята и неразлучная пара «кот + мопс» — бесплатно, в добрые руки.">
+    <meta property="og:image" content="https://example.com/og-cover.svg">
+    <meta property="og:url" content="https://example.com/">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Обзаведение питомцем | Приют в стиле Sims 3">
+    <meta name="twitter:description" content="Подари дом тому, кто ждёт тебя. Питомцы из приюта — бесплатно, в добрые руки.">
+    <meta name="twitter:image" content="https://example.com/og-cover.svg">
+
+    <!-- Favicon (SVG) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231E3F66'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E🐾%3C/text%3E%3C/svg%3E">
+
+    <!-- Подключение округлых шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- БАЗОВЫЕ СТИЛИ И ПЕРЕМЕННЫЕ --- */
+        :root {
+            --sims-blue-dark: #1E3F66;
+            --sims-blue-mid: #2E5C8A;
+            --sims-blue-light: #4A90D9;
+            --sims-cyan: #7EC8E3;
+            --sims-panel-bg: rgba(74, 144, 217, 0.85);
+            --sims-panel-border: #AEE2FF;
+            --sims-tooltip-bg: #B8E2F2;
+            --sims-tooltip-border: #4A90D9;
+            --sims-text-dark: #1A2B3C;
+            --sims-text-light: #FFFFFF;
+            --sims-btn-top: #AEE2FF;
+            --sims-btn-bottom: #4A90D9;
+            --font-main: 'Nunito', sans-serif;
+            --font-heading: 'Quicksand', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: linear-gradient(135deg, #1E3F66 0%, #4A90D9 100%);
+            color: var(--sims-text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- ОБЩИЕ КОМПОНЕНТЫ (Панели в стиле Sims) --- */
+        .sims-panel {
+            background: var(--sims-panel-bg);
+            border: 3px solid var(--sims-panel-border);
+            border-radius: 20px;
+            box-shadow: 
+                inset 0 0 15px rgba(255, 255, 255, 0.5),
+                0 10px 25px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .sims-panel:hover {
+            box-shadow: 
+                inset 0 0 20px rgba(255, 255, 255, 0.7),
+                0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            text-align: center;
+            color: var(--sims-text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .section-title span {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- КНОПКИ В СТИЛЕ SIMS --- */
+        .sims-btn {
+            display: inline-block;
+            background: linear-gradient(to bottom, var(--sims-btn-top) 0%, var(--sims-btn-bottom) 100%);
+            border: 2px solid #FFFFFF;
+            border-radius: 25px;
+            color: var(--sims-text-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            text-decoration: none;
+            text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 4px 0 #1E3F66,
+                0 6px 10px rgba(0, 0, 0, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            transition: all 0.1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sims-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0));
+            transition: left 0.3s ease;
+            border-radius: 25px 25px 0 0;
+        }
+
+        .sims-btn:hover::after {
+            left: 0;
+        }
+
+        .sims-btn:hover {
+            transform: translateY(2px);
+            box-shadow: 
+                0 2px 0 #1E3F66,
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.9);
+        }
+
+        .sims-btn:active {
+            transform: translateY(4px);
+            box-shadow: 
+                0 0 0 #1E3F66,
+                0 2px 4px rgba(0, 0, 0, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.9);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(30, 63, 102, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--sims-cyan);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            padding: 10px 20px;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--sims-text-light);
+            text-shadow: 2px 2px 0 var(--sims-blue-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            filter: drop-shadow(2px 2px 0 var(--sims-blue-dark));
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--sims-text-light);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            padding: 5px 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #AEE2FF;
+            text-shadow: 0 0 10px rgba(174, 226, 255, 0.8);
+        }
+
+        /* Кнопка мобильного меню (гамбургер) */
+        .nav-toggle {
+            display: none;
+            background: linear-gradient(to bottom, var(--sims-btn-top), var(--sims-btn-bottom));
+            border: 2px solid #FFFFFF;
+            border-radius: 10px;
+            color: var(--sims-text-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.4rem;
+            line-height: 1;
+            padding: 6px 14px;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #1E3F66, inset 0 2px 5px rgba(255, 255, 255, 0.8);
+            transition: transform 0.1s ease;
+        }
+
+        .nav-toggle:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #1E3F66, inset 0 2px 5px rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            color: var(--sims-text-light);
+            text-shadow: 3px 3px 0 var(--sims-blue-dark), 0 0 20px rgba(126, 200, 227, 0.5);
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #D4EFFF;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+            max-width: 600px;
+        }
+
+        /* --- СЕКЦИЯ О ПРИЮТЕ --- */
+        .about {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            color: var(--sims-text-light);
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border: 2px dashed var(--sims-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+
+        /* --- СЕКЦИЯ ПИТОМЦЕВ (КАРТОЧКИ) --- */
+        .pets {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .pets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .pet-card {
+            background: linear-gradient(180deg, #E6F7FF 0%, #B8E2F2 100%);
+            border: 3px solid #FFFFFF;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: 
+                0 8px 0 #1E3F66,
+                0 10px 20px rgba(0,0,0,0.3),
+                inset 0 0 15px rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .pet-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 12px 0 #1E3F66,
+                0 15px 25px rgba(0,0,0,0.4),
+                inset 0 0 20px rgba(255, 255, 255, 1);
+        }
+
+        .pet-image {
+            width: 100%;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: 2px solid #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            margin-bottom: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .pet-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Стили для парных питомцев */
+        .pet-image.duo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 4.5rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(184, 226, 242, 0.8) 100%);
+        }
+
+        .pet-image.duo span {
+            filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.1));
+        }
+
+        .pet-name {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--sims-blue-dark);
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .pet-breed {
+            font-size: 1rem;
+            color: #4A6B8A;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .pet-price {
+            font-weight: 800;
+            color: #2E7D32;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .pet-traits {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #1A2B3C;
+            font-weight: 600;
+        }
+
+        .pet-traits span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .pet-card .sims-btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        /* Бейдж "Только вместе" */
+        .together-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: linear-gradient(to bottom, #FFD700, #FFA500);
+            color: #1E3F66;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            border-radius: 15px;
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 4px 0 #B8860B, 0 5px 10px rgba(0,0,0,0.3);
+            transform: rotate(5deg);
+            z-index: 10;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+        }
+
+        /* --- ВСПЛЫВАЮЩАЯ ПОДСКАЗКА (TOOLTIP) В СТИЛЕ SIMS 3 --- */
+        .pet-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--sims-tooltip-bg);
+            border: 3px solid var(--sims-tooltip-border);
+            border-radius: 15px;
+            padding: 15px;
+            width: 250px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.8);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
+            pointer-events: none;
+            text-align: left;
+        }
+
+        .pet-card:hover .pet-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        .pet-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px;
+            border-style: solid;
+            border-color: var(--sims-tooltip-border) transparent transparent transparent;
+        }
+
+        .pet-tooltip::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 7px;
+            border-style: solid;
+            border-color: var(--sims-tooltip-bg) transparent transparent transparent;
+            z-index: 1;
+            margin-top: -3px;
+        }
+
+        .tooltip-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--sims-blue-dark);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            border-bottom: 1px solid rgba(74, 144, 217, 0.5);
+            padding-bottom: 5px;
+        }
+
+        .tooltip-detail {
+            font-size: 0.85rem;
+            color: #1A2B3C;
+            margin-bottom: 3px;
+        }
+
+        .tooltip-detail strong {
+            color: #2E5C8A;
+        }
+
+        /* --- СЕКЦИЯ КАК ПРИЮТИТЬ --- */
+        .how-to {
+            max-width: 1000px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            color: var(--sims-text-light);
+            transition: background 0.3s ease;
+        }
+
+        .step-card:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--sims-btn-top), var(--sims-btn-bottom));
+            border: 2px solid #FFFFFF;
+            border-radius: 50%;
+            line-height: 46px;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--sims-blue-dark);
+            margin-bottom: 15px;
+            box-shadow: 0 4px 0 #1E3F66, inset 0 2px 5px rgba(255,255,255,0.8);
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .step-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .step-card p {
+            font-size: 0.95rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* --- СЕКЦИЯ ОТЗЫВОВ --- */
+        .reviews {
+            max-width: 1000px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .review-card {
+            background: linear-gradient(180deg, #E6F7FF 0%, #B8E2F2 100%);
+            border: 3px solid #FFFFFF;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 0 #1E3F66, 0 8px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .review-card::before {
+            content: '“';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 4rem;
+            color: var(--sims-blue-light);
+            opacity: 0.5;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--sims-text-dark);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .review-author {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--sims-blue-dark);
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        .review-rating {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+        }
+
+        /* --- СЕКЦИЯ КОНТАКТОВ --- */
+        .contacts {
+            max-width: 800px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .contacts-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+            color: var(--sims-text-light);
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+            filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.3));
+        }
+
+        .contact-item h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .contact-item p {
+            font-size: 0.95rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: rgba(30, 63, 102, 0.9);
+            border-top: 3px solid var(--sims-cyan);
+            padding: 20px;
+            text-align: center;
+            color: var(--sims-text-light);
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        footer p {
+            margin-bottom: 5px;
+        }
+
+        /* --- АДАПТИВНОСТЬ --- */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .pets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            nav {
+                display: none;
+                width: 100%;
+            }
+            nav.is-open {
+                display: block;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 0 5px;
+            }
+            .header-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .hero {
+                min-height: 50vh;
+                padding: 60px 20px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            /* Тултипы скрыты на мобильных: информация дублируется в карточке */
+            .pet-tooltip {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: auto;
+                padding: 50px 16px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1.05rem;
+                margin-bottom: 30px;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .sims-btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+            .pets-grid {
+                grid-template-columns: 1fr;
+            }
+            .pet-image {
+                height: 160px;
+                font-size: 5rem;
+            }
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            .contacts-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- СКРОЛЛБАР В СТИЛЕ SIMS --- */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1E3F66;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #AEE2FF, #4A90D9);
+            border-radius: 6px;
+            border: 2px solid #1E3F66;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #D4EFFF, #7EC8E3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon">🐾</span>
+                Обзаведение питомцем
+            </div>
+            <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-nav">☰</button>
+            <nav id="main-nav" aria-label="Основная навигация">
+                <ul>
+                    <li><a href="#about">О приюте</a></li>
+                    <li><a href="#pets">Питомцы</a></li>
+                    <li><a href="#how-to">Как приютить</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Найди друга в стиле Sims</h1>
+        <p>Подари дом тому, кто ждёт тебя. В нашем приюте живут самые уютные, игривые и преданные питомцы.</p>
+        <a href="#pets" class="sims-btn">Смотреть питомцев</a>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+        <h2 class="section-title"><span>О приюте</span></h2>
+        <div class="sims-panel">
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Приют «Обзаведение питомцем» был основан в 2015 году группой энтузиастов, вдохновлённых игрой The Sims 3. Мы верим, что каждый питомец заслуживает любящую семью, а процесс выбора друга может быть таким же увлекательным, как в любимой игре.</p>
+                    <p>Наша миссия — не просто найти дом для животных, но и создать атмосферу уюта и игры. Мы тщательно следим за здоровьем наших подопечных, социализируем их и подбираем идеальную пару для каждого хозяина.</p>
+                    <p>Все наши питомцы стерилизованы, привиты и имеют ветпаспорт. Мы передаём их бесплатно, но требуем ответственности и любви.</p>
+                </div>
+                <div class="about-image">
+                    🏡
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PETS SECTION -->
+    <section id="pets" class="pets">
+        <h2 class="section-title"><span>Наши питомцы</span></h2>
+        <div class="pets-grid">
+            
+            <!-- Карточка 1: Гугуля -->
+            <div class="pet-card">
+                <div class="pet-image"><img src="images/cat.jpg" alt="Гугуля"></div>
+                <div class="pet-name">Гугуля</div>
+                <div class="pet-breed">Помесь, котёнок</div>
+                <div class="pet-price">Стоимость: бесплатно</div>
+                <div class="pet-traits">
+                    <span>🚀 Торпеда</span>
+                    <span>🧗 Любит приключения</span>
+                    <span>🥰 Лапочка</span>
+                </div>
+                <button class="sims-btn">Приютить</button>
+                <!-- Всплывающая подсказка -->
+                <div class="pet-tooltip">
+                    <div class="tooltip-title">Гугуля</div>
+                    <div class="tooltip-detail"><strong>Помесь, Котёнок</strong></div>
+                    <div class="tooltip-detail">Стоимость: бесплатно</div>
+                    <hr style="border: 0; border-top: 1px solid rgba(74,144,217,0.5); margin: 5px 0;">
+                    <div class="tooltip-detail"><strong>Черты характера:</strong></div>
+                    <div class="tooltip-detail">🚀 Торпеда</div>
+                    <div class="tooltip-detail">🧗 Любит приключения</div>
+                    <div class="tooltip-detail">🥰 Лапочка</div>
+                </div>
+            </div>
+
+            <!-- Карточка 2: Бе-бе -->
+            <div class="pet-card">
+                <div class="pet-image"><img src="images/kitten.jpg" alt="Бе-бе"></div>
+                <div class="pet-name">Бе-бе</div>
+                <div class="pet-breed">Помесь, котёнок</div>
+                <div class="pet-price">Стоимость: бесплатно</div>
+                <div class="pet-traits">
+                    <span>😴 Соня</span>
+                    <span>🤗 Ласковая</span>
+                    <span>🧶 Игривая</span>
+                </div>
+                <button class="sims-btn">Приютить</button>
+                <div class="pet-tooltip">
+                    <div class="tooltip-title">Бе-бе</div>
+                    <div class="tooltip-detail"><strong>Помесь, Котёнок</strong></div>
+                    <div class="tooltip-detail">Стоимость: бесплатно</div>
+                    <hr style="border: 0; border-top: 1px solid rgba(74,144,217,0.5); margin: 5px 0;">
+                    <div class="tooltip-detail"><strong>Черты характера:</strong></div>
+                    <div class="tooltip-detail">😴 Соня</div>
+                    <div class="tooltip-detail">🤗 Ласковая</div>
+                    <div class="tooltip-detail">🧶 Игривая</div>
+                </div>
+            </div>
+
+            <!-- Карточка 3: Блэз -->
+            <div class="pet-card">
+                <div class="pet-image">🐈‍⬛</div>
+                <div class="pet-name">Блэз</div>
+                <div class="pet-breed">Помесь, котёнок</div>
+                <div class="pet-price">Стоимость: бесплатно</div>
+                <div class="pet-traits">
+                    <span>🦇 Независимый</span>
+                    <span>🌙 Ночной</span>
+                    <span>👑 Гордый</span>
+                </div>
+                <button class="sims-btn">Приютить</button>
+                <div class="pet-tooltip">
+                    <div class="tooltip-title">Блэз</div>
+                    <div class="tooltip-detail"><strong>Помесь, Котёнок</strong></div>
+                    <div class="tooltip-detail">Стоимость: бесплатно</div>
+                    <hr style="border: 0; border-top: 1px solid rgba(74,144,217,0.5); margin: 5px 0;">
+                    <div class="tooltip-detail"><strong>Черты характера:</strong></div>
+                    <div class="tooltip-detail">🦇 Независимый</div>
+                    <div class="tooltip-detail">🌙 Ночной</div>
+                    <div class="tooltip-detail">👑 Гордый</div>
+                </div>
+            </div>
+
+            <!-- Карточка 4: Хунка Мунка -->
+            <div class="pet-card">
+                <div class="pet-image">🐈</div>
+                <div class="pet-name">Хунка Мунка</div>
+                <div class="pet-breed">Помесь, котёнок</div>
+                <div class="pet-price">Стоимость: бесплатно</div>
+                <div class="pet-traits">
+                    <span>🎭 Хитрая</span>
+                    <span>🐟 Рыболов</span>
+                    <span>💤 Лежебока</span>
+                </div>
+                <button class="sims-btn">Приютить</button>
+                <div class="pet-tooltip">
+                    <div class="tooltip-title">Хунка Мунка</div>
+                    <div class="tooltip-detail"><strong>Помесь, Котёнок</strong></div>
+                    <div class="tooltip-detail">Стоимость: бесплатно</div>
+                    <hr style="border: 0; border-top: 1px solid rgba(74,144,217,0.5); margin: 5px 0;">
+                    <div class="tooltip-detail"><strong>Черты характера:</strong></div>
+                    <div class="tooltip-detail">🎭 Хитрая</div>
+                    <div class="tooltip-detail">🐟 Рыболов</div>
+                    <div class="tooltip-detail">💤 Лежебока</div>
+                </div>
+            </div>
+
+            <!-- Карточка 5: Нова -->
+            <div class="pet-card">
+                <div class="pet-image">🐈‍⬛</div>
+                <div class="pet-name">Нова</div>
+                <div class="pet-breed">Помесь, котёнок</div>
+                <div class="pet-price">Стоимость: бесплатно</div>
+                <div class="pet-traits">
+                    <span>⚡ Энергичная</span>
+                    <span>🏃 Быстрая</span>
+                    <span>🎾 Активная</span>
+                </div>
+                <button class="sims-btn">Приютить</button>
+                <div class="pet-tooltip">
+                    <div class="tooltip-title">Нова</div>
+                    <div class="tooltip-detail"><strong>Помесь, Котёнок</strong></div>
+                    <div class="tooltip-detail">Стоимость: бесплатно</div>
+                    <hr style="border: 0; border-top: 1px solid rgba(74,144,217,0.5); margin: 5px 0;">
+                    <div class="tooltip-detail"><strong>Черты характера:</strong></div>
+                    <div class="tooltip-detail">⚡ Энергичная</div>
+                    <div class="tooltip-detail">🏃 Быстрая</div>
+                    <div class="tooltip-detail">🎾 Активная</div>
+                </div>
+            </div>
+
+            <!-- Карточка 6: Персик (Лошадь) -->
+            <div class="pet-card">
+                <div class="pet-image">🐴</div>
+                <div class="pet-name">Персик</div>
+                <div class="pet-breed">Помесь, жеребёнок</div>
+                <div class="pet-price">Стоимость: бесплатно</div>
+                <div class="pet-traits">
+                    <span>🐎 Неприхотливая</span>
+                    <span>🌾 Любит овёс</span>
+                    <span>❤️ Добрая</span>
+                </div>
+                <button class="sims-btn">Приютить</button>
+                <div class="pet-tooltip">
+                    <div class="tooltip-title">Персик</div>
+                    <div class="tooltip-detail"><strong>Помесь, Жеребёнок</strong></div>
+                    <div class="tooltip-detail">Стоимость: бесплатно</div>
+                    <hr style="border: 0; border-top: 1px solid rgba(74,144,217,0.5); margin: 5px 0;">
+                    <div class="tooltip-detail"><strong>Черты характера:</strong></div>
+                    <div class="tooltip-detail">🐎 Неприхотливая</div>
+                    <div class="tooltip-detail">🌾 Любит овёс</div>
+                    <div class="tooltip-detail">❤️ Добрая</div>
+                </div>
+            </div>
+
+            <!-- Карточка 7: Тимон и Патрик (Дуэт) -->
+            <div class="pet-card" style="border: 3px solid #FFD700; box-shadow: 0 8px 0 #B8860B, 0 10px 20px rgba(0,0,0,0.4), inset 0 0 15px rgba(255, 255, 255, 0.9);">
+                <div class="together-badge">Только вместе ❤️</div>
+                <div class="pet-image duo">
+                    <img src="images/catanddog.png" alt="Тимон и Патрик">
+                </div>
+                <div class="pet-name" style="font-size: 1.3rem;">Тимон и Патрик</div>
+                <div class="pet-breed">Пожилой кот и взрослый мопс</div>
+                <div class="pet-price" style="color: #B8860B;">Стоимость: бесплатно (в одни руки)</div>
+                <div class="pet-traits">
+                    <span>🤝 Неразлучные друзья</span>
+                    <span>🛋️ Любят диван</span>
+                    <span>🧘 Спокойные</span>
+                </div>
+                <button class="sims-btn" style="background: linear-gradient(to bottom, #FFD700 0%, #FFA500 100%); box-shadow: 0 4px 0 #B8860B, 0 6px 10px rgba(0, 0, 0, 0.3), inset 0 2px 5px rgba(255, 255, 255, 0.9); color: #1E3F66;">Забрать дуэт</button>
+                <div class="pet-tooltip" style="border-color: #FFD700; background: #FFF8DC;">
+                    <div class="tooltip-title" style="color: #B8860B; border-bottom: 1px solid rgba(184, 134, 11, 0.5);">Тимон и Патрик</div>
+                    <div class="tooltip-detail"><strong>Пожилой кот и взрослый мопс</strong></div>
+                    <div class="tooltip-detail">Стоимость: бесплатно</div>
+                    <div class="tooltip-detail" style="color: #B8860B; font-weight: bold;">⚠️ Только вместе!</div>
+                    <hr style="border: 0; border-top: 1px solid rgba(184, 134, 11, 0.3); margin: 5px 0;">
+                    <div class="tooltip-detail"><strong>Черты характера:</strong></div>
+                    <div class="tooltip-detail">🤝 Неразлучные друзья</div>
+                    <div class="tooltip-detail">🛋️ Любят диван</div>
+                    <div class="tooltip-detail">🧘 Спокойные</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HOW TO ADOPT SECTION -->
+    <section id="how-to" class="how-to">
+        <h2 class="section-title"><span>Как приютить</span></h2>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Выберите питомца</h3>
+                <p>Просмотрите карточки и найдите того, кто вам по душе. Обратите внимание на черты характера.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Оставьте заявку</h3>
+                <p>Нажмите кнопку «Приютить» или позвоните нам. Мы свяжемся с вами в течение дня.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Познакомьтесь</h3>
+                <p>Приезжайте в приют, чтобы пообщаться с питомцем и убедиться, что вы подходите друг другу.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Заберите домой</h3>
+                <p>Подпишите договор, получите ветпаспорт и заберите нового друга в любящий дом!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="reviews">
+        <h2 class="section-title"><span>Отзывы</span></h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-rating">★★★★★</div>
+                <div class="review-text">«Забрали отсюда кошечку Нову. Она оказалась настоящей торпедой! Носится по дому, как в Sims. Очень довольны, спасибо приюту!»</div>
+                <div class="review-author">— Анна и Максим</div>
+            </div>
+            <div class="review-card">
+                <div class="review-rating">★★★★★</div>
+                <div class="review-text">«Процесс выбора был как в игре! Всплывающие подсказки с чертами характера очень помогли. Забрали Гугулю, она лапочка.»</div>
+                <div class="review-author">— Дмитрий</div>
+            </div>
+            <div class="review-card">
+                <div class="review-rating">★★★★☆</div>
+                <div class="review-text">«Отличный приют. Всё честно, бесплатно, с заботой о животных. Немного долго ждали ответа, но это того стоило. Блэз — наш любимец!»</div>
+                <div class="review-author">— Елена</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTS SECTION -->
+    <section id="contacts" class="contacts">
+        <h2 class="section-title"><span>Контакты</span></h2>
+        <div class="sims-panel">
+            <div class="contacts-content">
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <h4>Адрес</h4>
+                    <p>г. Сансет Вэлли, ул. Лама-драйв, 13</p>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <h4>Телефон</h4>
+                    <p>+7 (999) 123-45-67</p>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🕒</span>
+                    <h4>Часы работы</h4>
+                    <p>Ежедневно с 10:00 до 20:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Приют «Обзаведение питомцем». Все права защищены.</p>
+        <p>Сделано с любовью в стиле The Sims 3.</p>
+    </footer>
+
+    <!-- Мобильное меню -->
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const nav = document.querySelector('#main-nav');
+
+        function closeMenu() {
+            nav.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.setAttribute('aria-label', 'Открыть меню');
+        }
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = nav.classList.toggle('is-open');
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+            navToggle.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+        });
+
+        nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+        document.addEventListener('click', (e) => {
+            if (nav.classList.contains('is-open') && !nav.contains(e.target) && e.target !== navToggle) {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('is-open')) closeMenu();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Приют Обзаведение питомцем</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Quicksand&display=swap" rel="stylesheet"> 
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f5f7fa;
+            color: #4a90d9;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-image: linear-gradient(to right, #4A90D9, #2E5C8A);
+            backdrop-filter: blur(10px); /* Легкий эффект размытия */
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,.1);
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        a {
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) { /* Мобайл */
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+        }
+
+        /* Hero секция */
+        section.hero {
+            min-height: calc(100vh - 70px);
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-family: 'Quicksand';
+        }
+
+        button {
+            cursor: pointer;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border: none;
+            background-image: linear-gradient(to bottom, #4A90D9, #2E5C8A);
+            color: white;
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.3), 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* О приюте */
+        section.about {
+            max-width: 800px;
+            margin: auto;
+            padding: 2rem;
+            background: #eaf4ff; /* Светлый оттенок синего */
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Карточки питомцев */
+        section.pets {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .pet-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: #fff;
+            transition: transform 0.3s;
+        }
+
+        .pet-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+        }
+
+        .pet-info {
+            padding: 1rem;
+        }
+
+        /* Подсказка как в игре */
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #cceeff;
+            border-radius: 10px;
+            padding: 1rem;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        .pet-card:hover > .tooltip,
+        .pet-card:focus-within > .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .trait-icon::before {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            width: 1em;
+            height: 1em;
+            margin-right: 0.5em;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        .trait-run::before {background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2hvdD0iMjQiPjxwYXRoIGQ9Ik0xMiAyMGMtNS41IDAtMTIgLTUuNS0xMiAxMmwwIDEyYzAgNi41IDUuNSAxMiAxMiAxMnptLTEyIC0xMkMxLjUgOCAwIDkuNSAwIDExdjJjMCAyLjUtMS41IDQtNCA0eiIvPjwvc3ZnPg==');}
+        .trait-adventure::before {background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2hvdD0iMjQiPjxwYXRoIGQ9Im0xMiAzMGwtOSAtOC4xYTEgMSAwIDAgMCAtMS4zLS43TDQgMTMuOWwxMS4zIC0xMS4zbDEwLjcgMTAuOGExIDEgMCAwIDAgMS4zLS43TDIwIDguMWwtOS4zIDkuMXoiLz48L3N2Zz4=');}
+        .trait-cute::before {background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2hvdD0iMjQiPjxwYXRoIGQ9Im0xMiAyNGMtNy4yIDAtMTMgLTYuMS0xMyAtMTNjMCA2LjEgNS44IDEzIDEzIDEzeiIvPjwvczn');}
+
+        /* Прокрутка */
+        :root {
+            scroll-behavior: smooth;
+        }
+
+        [id]:not(.header):target::before {
+            content: "";
+            display: block;
+            height: 70px; /* Высота хедера */
+            margin-top: -70px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">🦊 Обзаведение питомцем</div>
+    <nav>
+        <ul>
+            <li><a href="#about">О приюте</a></li>
+            <li><a href="#pets">Питомцы</a></li>
+            <li><a href="#how-to">Как приютить</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Hero -->
+<section id="home" class="hero">
+    <h1>Найди друга в стиле Sims!</h1>
+    <button><a href="#pets">Смотреть питомцев</a></button>
+</section>
+
+<!-- About -->
+<section id="about" class="about">
+    <h2>Добро пожаловать в наш уютный симулятор жизни!</h2>
+    <p>Наш виртуальный приют — это не просто место, где можно найти питомца. Это целый мир, полный приключений! Мы заботимся о каждом пушистом жителе так же трепетно, как вы будете заботиться о них дома.</p>
+    <p>Наша миссия — подарить каждому животному любящую семью. Вы можете выбрать себе идеального компаньона среди наших котов и собак, а мы поможем вам пройти все этапы адаптации.</p>
+</section>
+
+<!-- Pets -->
+<section id="pets" class="pets">
+    <!-- Пример карточки -->
+    <article tabindex="0" class="pet-card">
+        <img src="https://via.placeholder.com/300x200.png?text=%F0%9F%A6%B3" alt="Гугуля">
+        <div class="tooltip">
+            ⚠️ Помесь<br>
+            Котёнок<br>
+            Стоимость: бесплатно
+            <hr>
+            Черты характера:
+            <span class="trait-icon trait-run"></span> Торпеда
+            <span class="trait-icon trait-adventure"></span> Любит приключения
+            <span class="trait-icon trait-cute"></span> Лапочка
+        </div>
+        <div class="pet-info">
+            <h3>Гугуля</h3>
+            <p>Помесь</p>
+            <button>Приютить</button>
+        </div>
+    </article>
+
+    <article tabindex="0" class="pet-card">
+        <img src="https://via.placeholder.com/300x200.png?text=%F0%9F%90%95" alt="Бе-бе">
+        <div class="tooltip">
+            ⚠️ Собака<br>
+            Щенок<br>
+            Стоимость: бесплатно
+            <hr>
+            Черты характера:
+            <span class="trait-icon trait-run"></span> Любитель бегать
+            <span class="trait-icon trait-cute"></span> Милый
+        </div>
+        <div class="pet-info">
+            <h3>Бе-бе</h3>
+            <p>Щенок</p>
+            <button>Приютить</button>
+        </div>
+    </article>
+
+    <article tabindex="0" class="pet-card">
+        <img src="https://via.placeholder.com/300x200.png?text=%F0%9F%90%96" alt="Блэз">
+        <div class="tooltip">
+            ⚠️ Кошка<br>
+            Взрослая<br>
+            Стоимость: бесплатно
+            <hr>
+            Черты характера:
+            <span class="trait-icon trait-cute"></span> Хозяйственная
+            <span class="trait-icon trait-adventure"></span> Исследовательница
+        </div>
+        <div class="pet-info">
+            <h3>Блэз</h3>
+            <p>Кошка</p>
+            <button>Приютить</button>
+        </div>
+    </article>
+
+    <article tabindex="0" class="pet-card">
+        <img src="https://via.placeholder.com/300x200.png?text=%F0%9F%90%95" alt="Хунка Мунка">
+        <div class="tooltip">
+            ⚠️ Собака<br>
+            Взрослая<br>
+            Стоимость: бесплатно
+            <hr>
+            Черты характера:
+            <span class="trait-icon trait-run"></span> Охотник за палками
+            <span class="trait-icon trait-cute"></span> Верный друг
+        </div>
+        <div class="pet-info">
+            <h3>Хунка Мунка</h3>
+            <p>Собака</p>
+            <button>Приютить</button>
+        </div>
+    </article>
+
+    <article tabindex="0" class="pet-card">
+        <img src="https://via.placeholder.com/300x200.png?text=%F0%9F%A6%B3" alt="Нова">
+        <div class="tooltip">
+            ⚠️ Кошка<br>
+            Котяра<br>
+            Стоимость: бесплатно
+            <hr>
+            Черты характера:
+            <span class="trait-icon trait-cute"></span> Ночная сова
+            <span class="trait-icon trait-adventure"></span> Ловец теней
+        </div>
+        <div class="pet-info">
+            <h3>Нова</h3>
+            <p>Котяра</p>
+            <button>Приютить</button>
+        </div>
+    </article>
+</section>
+
+<!-- How to adopt -->
+<section id="how-to" style="padding: 2rem; text-align:center;">
+    <h2>Как приютить</h2>
+    <ol style="list-style-type: decimal-inside;">
+        <li>Выберите питомца на сайте или посетите нас лично.</li>
+        <li>Заполните простую анкету-заявку.</li>
+        <li>Приходите на встречу с вашим будущим другом.</li>
+        <li>Заберите своего нового члена семьи домой!</li>
+    </ol>
+</section>
+
+<!-- Reviews -->
+<section style="padding: 2rem; text-align:center;">
+    <h2>Отзывы</h2>
+    <blockquote>"Мы взяли Блэз, и теперь наши вечера наполнены мурчанием!" — Анна</blockquote>
+    <blockquote>"Бе-бе стал лучшим напарником для моих утренних пробежек." — Дмитрий</blockquote>
+    <blockquote>"Гугуля — настоящий торнадо, но очень ласковый!" — Мария</blockquote>
+</section>
+
+<!-- Contacts -->
+<section id="contacts" style="padding: 2rem; text-align:center;">
+    <h2>Контакты</h2>
+    <address>
+        г. Симс-Сити, ул. Дружбы, д. 3<br>
+        Тел.: +7 (999) 123-45-67<br>
+        Часы работы: пн-вс 10:00–20:00
+    </address>
+</section>
+
+<footer style="text-align: center; padding: 1rem;">© Приют "Обзаведение питомцем", 2026</footer>
+
+</body>
+</html>
