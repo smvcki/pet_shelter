@@ -15,7 +15,19 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify site files
+        run: |
+          test -f index.html
+          echo "index.html найден"
+      - name: HTMLHint (линт)
+        run: npx --yes htmlhint@1 "**/*.html" || true
+
   deploy:
+    needs: lint
     runs-on: ubuntu-latest
     environment:
       name: github-pages
